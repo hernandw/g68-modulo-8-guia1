@@ -1,6 +1,7 @@
 import express from 'express';
 import routes from './routes/router.js'
 import { engine } from 'express-handlebars';
+import cookieParser from 'cookie-parser';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -12,6 +13,8 @@ app.set('view engine', 'hbs');
 app.set('views', './views');
 
 //Middlewares
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 //Routes
 app.use('/', routes)
